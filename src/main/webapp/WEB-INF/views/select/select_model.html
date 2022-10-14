@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parts</title>
+</head>
+<body>
+h1>Choose your car and parts category</h1>
+
+<select class="form-control" id="dropDownListModels">
+    <option value="0">select option</option>
+    <option th:each="option : ${options}" th:value="${option.getId()}" th:text="${option.getModel()}"></option>
+</select>
+</body>
+</html>
