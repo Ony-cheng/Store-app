@@ -10,12 +10,13 @@ public class PartDAO {
 
     private final List<CarDTO> carOptions = new ArrayList<CarDTO>();
 
+    public CarDTO currentQuery = new CarDTO();
 
     {
         carOptions.add(new CarDTO(
                 1, "Daewoo", "Lanos", "Sport", "4.5 turbo", "Coupe"));
         carOptions.add(new CarDTO(
-                2, "Daewoo", "Lanos", "Cruise missle", "Jet", "tube"));
+                2, "Daewoo", "Lanos", "Cruise missle", "Jet", "Паляниця"));
         carOptions.add(new CarDTO(
                 3, "Daewoo", "Lanos", "Dwarf destroyer", "0.5", "Hetchback"));
         carOptions.add(new CarDTO(
@@ -41,5 +42,7 @@ public class PartDAO {
     public List<CarDTO> getOptions(){
         return carOptions;
     }
+
+
 
 }

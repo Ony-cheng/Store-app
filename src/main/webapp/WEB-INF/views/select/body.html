@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Parts</title>
+</head>
+<body>
+<h1>Choose your car and parts category</h1>
+<p th:text="${currentQuery.getBrand()}">VALUE</p>
+<p th:text="${currentQuery.getModel()}">VALUE</p>
+<p th:text="${currentQuery.getMotorType()}">VALUE</p>
+
+<form action="#" th:action="@{/select/mod}" th:object="${carDTO}"  method="get">
+<select th:field="*{bodyType}" class="form-control" id="dropDownListBody" onchange="this.form.submit()">
+    <option value="0">select option</option>
+    <option th:each="option : ${options}" th:value="${option.getBodyType()}" th:text="${option.getBodyType()}"></option>
+</select>
+
+</form>
+</body>
+</html>

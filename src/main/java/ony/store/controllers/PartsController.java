@@ -18,22 +18,46 @@ public class PartsController {
         this.partDAO = partDAO;
     }
 
+
     @GetMapping
-    public String selectBrand(Model model){
+    public String selectBrand(@ModelAttribute CarDTO carDTO, Model model){
 
-        model.addAttribute("carDTO", new CarDTO());
         model.addAttribute("options",partDAO.getOptions());
-
         return "select/start";
     }
     @GetMapping("/model")
     public String selectModel(@ModelAttribute CarDTO carDTO, Model model){
-        model.addAttribute("carDTO",carDTO);
+        partDAO.currentQuery.setBrand(carDTO.getBrand());
         model.addAttribute("options",partDAO.getOptions());
         return "select/select_model";
     }
     @GetMapping("/engine")
-    public String selectEngine(){
+    public String selectEngine(@ModelAttribute CarDTO carDTO, Model model){
+        partDAO.currentQuery.setModel(carDTO.getModel());
+        model.addAttribute("currentQuery", partDAO.currentQuery);
+        model.addAttribute("options",partDAO.getOptions());
         return "select/selectEngine";
+    }
+    @GetMapping("/body")
+    public String selectBody(@ModelAttribute CarDTO carDTO, Model model) {
+        partDAO.currentQuery.setMotorType(carDTO.getMotorType());
+        model.addAttribute("currentQuery", partDAO.currentQuery);
+        model.addAttribute("options", partDAO.getOptions());
+        return "select/body";
+    }
+    @GetMapping("/mod")
+    public String selectModification(@ModelAttribute CarDTO carDTO, Model model){
+        partDAO.currentQuery.setBodyType(carDTO.getBodyType());
+        model.addAttribute("currentQuery", partDAO.currentQuery);
+        model.addAttribute("options", partDAO.getOptions());
+       return "select/modification";
+
+    }
+    @GetMapping("/category")
+    public String selectCategory(@ModelAttribute CarDTO carDTO, Model model){
+        partDAO.currentQuery.setModification(carDTO.getModification());
+        model.addAttribute("currentQuery", partDAO.currentQuery);
+        return "select/category";
+
     }
 }
