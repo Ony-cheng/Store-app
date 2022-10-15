@@ -8,6 +8,9 @@ public class CarDTO {
     private String motorType;
     private String bodyType;
 
+    public CarDTO() {
+    }
+
     public int getId() {
         return id;
     }

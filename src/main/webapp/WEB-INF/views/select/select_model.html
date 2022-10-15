@@ -5,11 +5,17 @@
     <title>Parts</title>
 </head>
 <body>
-h1>Choose your car and parts category</h1>
+<h1>Choose your car and parts category</h1>
 
-<select class="form-control" id="dropDownListModels">
-    <option value="0">select option</option>
-    <option th:each="option : ${options}" th:value="${option.getId()}" th:text="${option.getModel()}"></option>
-</select>
+<p th:text="${carDTO.getBrand()}">VALUE</p>
+
+
+<form action="#" th:action="@{/select/engine}" th:object="${carDTO}"  method="get">
+    <select th:field="*{model}" class="form-control" id="dropDownListModels" onchange="this.form.submit()">
+        <option value="0">select option</option>
+        <option th:each="option : ${options}" th:value="${option.getModel()}" th:text="${option.getModel()}"></option>
+    </select>
+
+
 </body>
 </html>

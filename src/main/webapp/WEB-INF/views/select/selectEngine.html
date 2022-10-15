@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Engine</title>
+</head>
+<body>
+
+
+<select class="form-control" id="dropDownListModification">
+    <option value="0">select option</option>
+    <option th:each="option : ${options}" th:value="${option.getId()}" th:text="${option.getModification()}"></option>
+</select>
+
+<select class="form-control" id="dropDownListMotor">
+    <option value="0">select option</option>
+    <option th:each="option : ${options}" th:value="${option.getId()}" th:text="${option.getMotorType()}"></option>
+</select>
+
+<select class="form-control" id="dropDownListBodies">
+    <option value="0">select option</option>
+    <option th:each="option : ${options}" th:value="${option.getId()}" th:text="${option.getBodyType()}"></option>
+</select>
+</body>
+</html>
