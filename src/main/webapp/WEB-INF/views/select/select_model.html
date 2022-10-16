@@ -11,7 +11,7 @@
 
 <a href = "/select">Choose a car</a> </br></br>
 
-<form action="#" th:action="@{/select/engine}" th:object="${carDTO}"  method="get">
+<form action="#" th:action="@{/select}" th:object="${carDTO}"  method="get">
     <select th:field="*{model}" class="form-control" id="dropDownListModels" onchange="this.form.submit()">
         <option value="0">select option</option>
         <option th:each="option : ${options}" th:value="${option.getModel()}" th:text="${option.getModel()}"></option>

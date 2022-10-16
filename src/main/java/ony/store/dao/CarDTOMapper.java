@@ -11,6 +11,9 @@ public class CarDTOMapper implements RowMapper<CarDTO> {
     public CarDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
         CarDTO carDTO = new CarDTO();
         carDTO.setBrand(rs.getString("name"));
+        carDTO.setModel(rs.getString("name"));
+        carDTO.setMotorType(rs.getString("name"));
+        carDTO.setBodyType(rs.getString("name"));
         return carDTO;
     }
 }
