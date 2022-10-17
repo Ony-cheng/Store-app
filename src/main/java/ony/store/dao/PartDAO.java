@@ -28,13 +28,15 @@ private final JdbcTemplate jdbcTemplate;
         this.currentQuery = currentQuery;
     }
 
-    private CarDTO currentQuery = new CarDTO();
+    public CarDTO currentQuery = new CarDTO();
 
 
 //
 
-    public List<CarDTO> getOptions(){
-       return jdbcTemplate.query("SELECT * FROM BRANDS", new CarDTOMapper());
+    public List<CarDTO> getOptions(String tableName){
+
+       String SQL=String.format("SELECT * FROM %s",tableName) ;
+        return jdbcTemplate.query(SQL, new CarDTOMapper());
     }
 
 

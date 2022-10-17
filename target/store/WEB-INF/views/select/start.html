@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Parts</title>
+</head>
+<body>
+<h1>Choose your car and parts category івї</h1>
+
+
+<form action="#" th:action="@{/select/model}" th:object="${carDTO}"  method="get">
+<select th:field="*{brand}" class="form-control" id="dropDownListBrands" onchange="this.form.submit()">
+    <option value="0">select option</option>
+    <option th:each="option : ${options}" th:value="${option.getBrand()}" th:text="${option.getBrand()}"></option>
+</select>
+
+</form>
+
+
+
+
+</body>
+</html>
