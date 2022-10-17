@@ -31,11 +31,23 @@ private final JdbcTemplate jdbcTemplate;
     public CarDTO currentQuery = new CarDTO();
 
 
-//
+// SELECT NAME FROM MODELS WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME = 'Ford');
 
-    public List<CarDTO> getOptions(String tableName){
+    public List<CarDTO> getOptions(String tableName, CarDTO carDTO){
 
-       String SQL=String.format("SELECT * FROM %s",tableName) ;
+       String SQL=String.format("SELECT * FROM %s",tableName);
+       switch (tableName){
+           case "BRANDS": SQL=String.format("SELECT * FROM %s",tableName) ; break;
+           case "MODELS": SQL =
+                   "SELECT NAME FROM MODELS WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME = '"
+                           + carDTO.getBrand() + "')";
+           break;
+           case "ENGINES":SQL =
+                   "SELECT NAME FROM ENGINES WHERE model_id IN (SELECT ID FROM MODELS WHERE NAME = '"
+                           + carDTO.getModel() + "')";
+           break;
+       }
+
         return jdbcTemplate.query(SQL, new CarDTOMapper());
     }
 
