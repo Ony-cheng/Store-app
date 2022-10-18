@@ -35,7 +35,7 @@ private final JdbcTemplate jdbcTemplate;
 
     public List<CarDTO> getOptions(String tableName, CarDTO carDTO){
 
-       String SQL=String.format("SELECT * FROM %s",tableName);
+       String SQL=String.format("SELECT * FROM BRANDS");
        switch (tableName){
            case "BRANDS": SQL=String.format("SELECT * FROM %s",tableName) ; break;
            case "MODELS": SQL =
