@@ -13,6 +13,7 @@ public class PartsController {
 
     PartDAO partDAO;
 
+    CarDTO currentQuery = new CarDTO();
     @Autowired
     public PartsController(PartDAO partDAO) {
         this.partDAO = partDAO;
@@ -27,37 +28,38 @@ public class PartsController {
     }
     @GetMapping("/model")
     public String selectModel(@ModelAttribute CarDTO carDTO, Model model){
-        partDAO.currentQuery.setBrand(carDTO.getBrand());
-        partDAO.setCurrentQuery(carDTO);
+        currentQuery.setBrand(carDTO.getBrand());
+        model.addAttribute("currentQuery", currentQuery);
         model.addAttribute("options",partDAO.getOptions("MODELS", carDTO));
         return "select/select_model";
     }
     @GetMapping("/engine")
     public String selectEngine(@ModelAttribute CarDTO carDTO, Model model){
-        partDAO.currentQuery.setModel(carDTO.getModel());
-        model.addAttribute("currentQuery", partDAO.currentQuery);
+        currentQuery.setModel(carDTO.getModel());
+        model.addAttribute("currentQuery", currentQuery);
         model.addAttribute("options",partDAO.getOptions("ENGINES",carDTO));
         return "select/selectEngine";
     }
     @GetMapping("/body")
     public String selectBody(@ModelAttribute CarDTO carDTO, Model model) {
-        partDAO.currentQuery.setMotorType(carDTO.getMotorType());
-        model.addAttribute("currentQuery", partDAO.currentQuery);
+        currentQuery.setMotorType(carDTO.getMotorType());
+        model.addAttribute("currentQuery", currentQuery);
         model.addAttribute("options", partDAO.getOptions("BODIES",carDTO));
         return "select/body";
     }
-    @GetMapping("/mod")
-    public String selectModification(@ModelAttribute CarDTO carDTO, Model model){
-        partDAO.currentQuery.setBodyType(carDTO.getBodyType());
-        model.addAttribute("currentQuery", partDAO.currentQuery);
-        model.addAttribute("options", partDAO.getOptions("BODIES",carDTO));
-       return "select/modification";
-
-    }
+//    @GetMapping("/mod")
+//    public String selectModification(@ModelAttribute CarDTO carDTO, Model model){
+//        currentQuery.setBodyType(carDTO.getBodyType());
+//        model.addAttribute("currentQuery", partDAO.currentQuery);
+//        model.addAttribute("options", partDAO.getOptions("BODIES",carDTO));
+//       return "select/modification";
+//
+//    }
     @GetMapping("/category")
     public String selectCategory(@ModelAttribute CarDTO carDTO, Model model){
-        partDAO.currentQuery.setModification(carDTO.getModification());
-        model.addAttribute("currentQuery", partDAO.currentQuery);
+
+        currentQuery.setBodyType(carDTO.getBodyType());
+        model.addAttribute("currentQuery", currentQuery);
         return "select/category";
 
     }

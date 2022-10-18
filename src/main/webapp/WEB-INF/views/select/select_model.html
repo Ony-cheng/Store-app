@@ -5,15 +5,15 @@
     <title>Parts</title>
 </head>
 <body>
-<h1>Choose your car and parts category</h1>
+<h1>Обери машину на яку шукаєш запчастини</h1>
 
 <nobr th:text="${carDTO.getBrand()}">VALUE</nobr>
 
-<a href = "/select">Choose a car</a> </br></br>
+<a href = "/select">Обрати марку</a> </br></br>
 
 <form action="#" th:action="@{/select/engine}" th:object="${carDTO}"  method="get">
     <select th:field="*{model}" class="form-control" id="dropDownListModels" onchange="this.form.submit()">
-        <option value="0">select option</option>
+        <option value="0">Модель машини</option>
         <option th:each="option : ${options}" th:value="${option.getModel()}" th:text="${option.getModel()}"></option>
     </select>
 

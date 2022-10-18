@@ -5,13 +5,17 @@
     <title>Engine</title>
 </head>
 <body>
-<h1>Choose your car and parts category</h1>
-<p th:text="${currentQuery.getBrand()}">VALUE</p>
-<p th:text="${currentQuery.getModel()}">VALUE</p>
+<h1>Обери машину на яку шукаєш запчастини</h1>
+
+<nobr th:text="${currentQuery.getBrand()}">VALUE</nobr>
+<a href = "/select">Обрати марку</a> </br></br>
+
+<nobr th:text="${currentQuery.getModel()}">VALUE</nobr>
+ </br></br>
 
 <form action="#" th:action="@{/select/body}" th:object="${carDTO}"  method="get">
     <select th:field="*{motorType}" class="form-control" id="dropDownListMotor" onchange="this.form.submit()">
-    <option value="0">select option</option>
+    <option value="0">Двигун</option>
     <option th:each="option : ${options}" th:value="${option.getMotorType()}" th:text="${option.getMotorType()}"></option>
 </select>
 
