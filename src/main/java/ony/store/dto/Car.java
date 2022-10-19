@@ -1,6 +1,6 @@
 package ony.store.dto;
 
-public class CarDTO {
+public class Car {
     private int id;
     private String brand;
     private String model;
@@ -8,7 +8,7 @@ public class CarDTO {
     private String motorType;
     private String bodyType;
 
-    public CarDTO() {
+    public Car() {
     }
 
     public int getId() {
@@ -59,7 +59,7 @@ public class CarDTO {
         this.bodyType = bodyType;
     }
 
-    public CarDTO(int id, String brand, String model, String modification, String motorType, String bodyType) {
+    public Car(int id, String brand, String model, String modification, String motorType, String bodyType) {
         this.id = id;
         this.brand = brand;
         this.model = model;

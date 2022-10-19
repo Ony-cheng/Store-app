@@ -17,7 +17,7 @@
  </br></br>
 
 
-<form action="#" th:action="@{/select/category}" th:object="${carDTO}"  method="get">
+<form action="#" th:action="@{/select/category}" th:object="${car}"  method="get">
 <select th:field="*{bodyType}" class="form-control" id="dropDownListBody" onchange="this.form.submit()">
     <option value="0">Тип кузова</option>
     <option th:each="option : ${options}" th:value="${option.getBodyType()}" th:text="${option.getBodyType()}"></option>

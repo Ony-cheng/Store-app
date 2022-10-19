@@ -1,50 +1,47 @@
 package ony.store.dao;
 
-import ony.store.dto.CarDTO;
+import ony.store.dto.Car;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 @Component
-public class PartDAO {
+public class CarDAO {
 
 
 private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public PartDAO(JdbcTemplate jdbcTemplate) {
+    public CarDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public CarDTO getCurrentQuery() {
+    public Car getCurrentQuery() {
         return currentQuery;
     }
 
-    public void setCurrentQuery(CarDTO currentQuery) {
+    public void setCurrentQuery(Car currentQuery) {
         this.currentQuery = currentQuery;
     }
 
-    public CarDTO currentQuery = new CarDTO();
+    public Car currentQuery = new Car();
 
 
 // SELECT NAME FROM MODELS WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME = 'Ford');
 
-    public List<CarDTO> getOptions(String tableName, CarDTO carDTO){
+    public List<Car> getOptions(String tableName, Car car){
 
        String SQL=String.format("SELECT * FROM %s",tableName);
        switch (tableName){
            case "BRANDS": SQL=String.format("SELECT * FROM %s",tableName) ; break;
            case "MODELS": SQL =
                    "SELECT NAME FROM MODELS WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME = '"
-                           + carDTO.getBrand() + "')";
+                           + car.getBrand() + "')";
            break;
            case "ENGINES":SQL =
                    "SELECT NAME FROM ENGINES WHERE model_id IN (SELECT ID FROM MODELS WHERE NAME = '"
-                           + carDTO.getModel() + "')";
+                           + car.getModel() + "')";
            break;
        }
 

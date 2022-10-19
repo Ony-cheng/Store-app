@@ -7,11 +7,11 @@
 <body>
 <h1>Обери машину на яку шукаєш запчастини</h1>
 
-<nobr th:text="${carDTO.getBrand()}">VALUE</nobr>
+<nobr th:text="${car.getBrand()}">VALUE</nobr>
 
 <a href = "/select">Обрати марку</a> </br></br>
 
-<form action="#" th:action="@{/select/engine}" th:object="${carDTO}"  method="get">
+<form action="#" th:action="@{/select/engine}" th:object="${car}"  method="get">
     <select th:field="*{model}" class="form-control" id="dropDownListModels" onchange="this.form.submit()">
         <option value="0">Модель машини</option>
         <option th:each="option : ${options}" th:value="${option.getModel()}" th:text="${option.getModel()}"></option>

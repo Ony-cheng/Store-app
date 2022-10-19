@@ -13,7 +13,7 @@
 <nobr th:text="${currentQuery.getModel()}">VALUE</nobr>
  </br></br>
 
-<form action="#" th:action="@{/select/body}" th:object="${carDTO}"  method="get">
+<form action="#" th:action="@{/select/body}" th:object="${car}"  method="get">
     <select th:field="*{motorType}" class="form-control" id="dropDownListMotor" onchange="this.form.submit()">
     <option value="0">Двигун</option>
     <option th:each="option : ${options}" th:value="${option.getMotorType()}" th:text="${option.getMotorType()}"></option>

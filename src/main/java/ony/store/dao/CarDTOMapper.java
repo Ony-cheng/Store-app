@@ -1,19 +1,19 @@
 package ony.store.dao;
 
-import ony.store.dto.CarDTO;
+import ony.store.dto.Car;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CarDTOMapper implements RowMapper<CarDTO> {
+public class CarDTOMapper implements RowMapper<Car> {
     @Override
-    public CarDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-        CarDTO carDTO = new CarDTO();
-        carDTO.setBrand(rs.getString("name"));
-        carDTO.setModel(rs.getString("name"));
-        carDTO.setMotorType(rs.getString("name"));
-        carDTO.setBodyType(rs.getString("name"));
-        return carDTO;
+    public Car mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Car car = new Car();
+        car.setBrand(rs.getString("name"));
+        car.setModel(rs.getString("name"));
+        car.setMotorType(rs.getString("name"));
+        car.setBodyType(rs.getString("name"));
+        return car;
     }
 }
