@@ -1,5 +1,6 @@
 package ony.store.dao;
 
+import ony.store.dto.Car;
 import ony.store.dto.CurrentQuery;
 import ony.store.dto.Part;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,7 @@ public class PartDAO {
         return jdbcTemplate.query(SQL, new Object[]{currentQuery.getBrand()}, new PartDTOMapper());
     }
 
+    public void createPart(Part part){
+
+    }
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <title>New part</title>
+</head>
+<body>
+<h1>Нова запчастина</h1>
+
+
+<!--<form action="#" th:method="POST" th:action="@{/parts/create}"  th:object="${part}" >-->
+  <form th:method="POST" th:action="@{/parts/new}" th:object="${part}">
+
+  <label for="name">Назва: </label>
+  <input type="text" th:field="*{name}" id="name"/>
+  <br/>
+  <label for="partnumber">Артикул: </label>
+  <input type="text" th:field="*{partNumber}" id="partnumber"/>
+  <br/>
+  <label for="description">Опис: </label>
+  <input type="text" th:field="*{description}" id="description"/>
+  <br/>
+  <label for="imageurl">Опис: </label>
+  <input type="text" th:field="*{imageURL}" id="imageurl"/>
+  <br/>
+  <label for="price">Опис: </label>
+  <input type="text" th:field="*{price}" id="price"/>
+  <br/>
+  <input type="submit" value="Записати"/>
+
+</form>
+
+</body>
+</html>
