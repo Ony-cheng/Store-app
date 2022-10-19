@@ -17,18 +17,7 @@ private final JdbcTemplate jdbcTemplate;
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Car getCurrentQuery() {
-        return currentQuery;
-    }
 
-    public void setCurrentQuery(Car currentQuery) {
-        this.currentQuery = currentQuery;
-    }
-
-    public Car currentQuery = new Car();
-
-
-// SELECT NAME FROM MODELS WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME = 'Ford');
 
     public List<Car> getOptions(String tableName, Car car){
 
@@ -36,11 +25,11 @@ private final JdbcTemplate jdbcTemplate;
        switch (tableName){
            case "BRANDS": SQL=String.format("SELECT * FROM %s",tableName) ; break;
            case "MODELS": SQL =
-                   "SELECT NAME FROM MODELS WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME = '"
+                   "SELECT * FROM MODELS WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME = '"
                            + car.getBrand() + "')";
            break;
            case "ENGINES":SQL =
-                   "SELECT NAME FROM ENGINES WHERE model_id IN (SELECT ID FROM MODELS WHERE NAME = '"
+                   "SELECT * FROM ENGINES WHERE model_id IN (SELECT ID FROM MODELS WHERE NAME = '"
                            + car.getModel() + "')";
            break;
        }

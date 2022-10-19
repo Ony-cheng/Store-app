@@ -30,6 +30,7 @@ public class CarSelectorController {
     @GetMapping("/model")
     public String selectModel(@ModelAttribute Car car, Model model){
         currentQuery.setBrand(car.getBrand());
+      
         model.addAttribute("currentQuery", currentQuery);
         model.addAttribute("options",carDAO.getOptions("MODELS", car));
         return "select/select_model";

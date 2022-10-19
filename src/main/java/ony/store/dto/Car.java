@@ -8,6 +8,52 @@ public class Car {
     private String motorType;
     private String bodyType;
 
+    private int brandId;
+    private int modelId;
+    private int motorTypeId;
+    private int bodyTypeId;
+    private int modificationId;
+
+    public int getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
+
+    public int getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(int modelId) {
+        this.modelId = modelId;
+    }
+
+    public int getMotorTypeId() {
+        return motorTypeId;
+    }
+
+    public void setMotorTypeId(int motorTypeId) {
+        this.motorTypeId = motorTypeId;
+    }
+
+    public int getBodyTypeId() {
+        return bodyTypeId;
+    }
+
+    public void setBodyTypeId(int bodyTypeId) {
+        this.bodyTypeId = bodyTypeId;
+    }
+
+    public int getModificationId() {
+        return modificationId;
+    }
+
+    public void setModificationId(int modificationId) {
+        this.modificationId = modificationId;
+    }
+
     public Car() {
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Parts</title>
@@ -23,5 +23,10 @@
 
 <p>Ось які запчастини на неї в нас є </p>
 
+<div th:each="part : ${parts}">
+    <p th:text="${part.getName()}">VALUE</p>
+    <img th:src="${part.getImageURL()}">
+
+</div>
 </body>
 </html>

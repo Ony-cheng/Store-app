@@ -1,13 +1,13 @@
 package ony.store.dto;
 
-public class PartDTO {
+public class Part {
     private int id;
     private String name;
     private String description;
+    private String imageURL;
     private String partNumber;
-
-    private String category;
-
+    private int category;
+    private float price;
 
     public int getId() {
         return id;
@@ -33,6 +33,14 @@ public class PartDTO {
         this.description = description;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     public String getPartNumber() {
         return partNumber;
     }
@@ -41,11 +49,19 @@ public class PartDTO {
         this.partNumber = partNumber;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }
