@@ -37,6 +37,13 @@ private final JdbcTemplate jdbcTemplate;
         return jdbcTemplate.query(SQL, new CarDTOMapper());
     }
 
+        public List<Car> getAllOptions(Car optionSet){
 
+
+        String SQL ="select brands.name, models.name, engines.name, bodies.name" +
+                    "from brands " +
+                    "join models on brands.id=models.brand_id";
+            return jdbcTemplate.query(SQL, new CarDTOMapper());
+        }
 
 }
