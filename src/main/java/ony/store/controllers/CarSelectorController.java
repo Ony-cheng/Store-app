@@ -51,9 +51,9 @@ public class CarSelectorController {
     }
 
     @GetMapping("/category")
-    public String selectCategory(@ModelAttribute Car carDAO, Model model){
+    public String selectCategory(@ModelAttribute Car car, Model model){
 
-        currentQuery.setBodyType(carDAO.getBodyType());
+        currentQuery.setBodyType(car.getBodyType());
         model.addAttribute("currentQuery", currentQuery);
         return "redirect:/parts";
 

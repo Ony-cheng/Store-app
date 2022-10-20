@@ -20,15 +20,10 @@ public class PartDAO {
 
 
 
-    public List<Part> getParts(CurrentQuery currentQuery){
+    public List<Part> getParts(CurrentQuery currentQuery){ // Треба знищіти на**й цей каррентквері
 
 
-        String SQL="select * from parts\n" +
-                "join cars on parts.car=cars.id\n" +
-                "join brands on cars.brand_id=brands.id\n" +
-                "where brands.name=?";
-
-        SQL="select *" +
+        String   SQL="select *" +
                 " from parts" +
                 " join cars_to_parts on cars_to_parts.part_id=parts.id" +
                 " join cars on cars.id=cars_to_parts.car_id" +
@@ -41,12 +36,29 @@ public class PartDAO {
                 " AND engines.name = ? " +
                 " AND bodies.name = ? )";
         System.out.println("Brand is "+currentQuery.getBrand()+ " id is "+ currentQuery.getBrandId());
+
         return jdbcTemplate.query(SQL, new Object[]{currentQuery.getBrand(), currentQuery.getModel(),
         currentQuery.getMotorType(), currentQuery.getBodyType()}, new PartDTOMapper());
     }
 
-    public void createPart(Part part){
+    public int createPart(Part part){
+    String SQL = "insert into parts(name, partnumber, description,  image_url, price)" +
+            "values(?,?,?,?,?)";
+        jdbcTemplate.update(SQL, part.getName(), part.getPartNumber(),part.getDescription(),part.getImageURL(),
+                part.getPrice());
+        SQL= "select id from parts where partnumber=?";
 
-//        jdbcTemplate.query();
+        int partId= (int) jdbcTemplate.queryForObject(SQL, new Object[] {part.getPartNumber()}, Integer.class);
+
+        return partId;
     }
+
+    public Part getSinglePart(int Id){
+
+       String SQL= "select * from parts where id=?";
+
+        return jdbcTemplate.query(SQL, new Object[]{Id}, new PartDTOMapper()).get(0);
+    }
+
+
 }
