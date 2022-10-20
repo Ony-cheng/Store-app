@@ -47,6 +47,7 @@ public class PartsController {
                             " URL " + part.getImageURL() +
                             " Price" + part.getPrice());
 //        partDAO.createPart(part);
-        return "redirect:/select";
+        return "redirect:/carforpart/";
     }
+
 }
