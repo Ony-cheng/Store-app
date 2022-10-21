@@ -28,22 +28,19 @@ public class CarForPartController {
         this.carDAO = carDAO;
     }
 
-
-
-
     @GetMapping("/{partId}")
     public String carForPart(@PathVariable Map <String, String> fromPath,
                              @ModelAttribute Car car, Model model){
-
-
+        Car carToAdd = new Car();
         int partId = Integer.parseInt(fromPath.get("partId"));
 
-        model.addAttribute(partDAO.getSinglePart(partId));
 
+
+        model.addAttribute(partDAO.getSinglePart(partId));
         model.addAttribute("brandOtions",carDAO.getBrandsOptions());
-        model.addAttribute("modelOptions",carDAO.getModelsOptions());
-        model.addAttribute("enginesOptions",carDAO.getEnginesOptions());
-        model.addAttribute("bodiesOptions",carDAO.getBodiesOptions());
+        model.addAttribute("modelOptions",carDAO.getModelsOptions(car));
+        model.addAttribute("enginesOptions",carDAO.getEnginesOptions(car));
+        model.addAttribute("bodiesOptions",carDAO.getBodiesOptions(car));
 
         return "carforpart/carforpart";
     }

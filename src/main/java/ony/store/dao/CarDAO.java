@@ -45,21 +45,21 @@ private final JdbcTemplate jdbcTemplate;
         return jdbcTemplate.query(SQL, new CarBrandsMapper());
 
     }
-    public List<String> getModelsOptions(){
+    public List<String> getModelsOptions(Car car){
 
-        String SQL= "select name from models";
+        String SQL= "select name from models WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME=?)";
 
-        return jdbcTemplate.query(SQL, new CarModelsMapper());
-
-    }
-    public List<String> getEnginesOptions(){
-
-        String SQL= "select name from engines";
-
-        return jdbcTemplate.query(SQL, new CarEnginesMapper());
+        return jdbcTemplate.query(SQL, new Object[]{car.getBrand()}, new CarModelsMapper());
 
     }
-    public List<String> getBodiesOptions(){
+    public List<String> getEnginesOptions(Car car){
+
+        String SQL= "select name from engines WHERE model_id IN (SELECT ID FROM MODELS WHERE NAME =?)";
+
+        return jdbcTemplate.query(SQL, new Object[]{car.getModel()}, new CarEnginesMapper());
+
+    }
+    public List<String> getBodiesOptions(Car car){
 
         String SQL= "select name from bodies";
 
