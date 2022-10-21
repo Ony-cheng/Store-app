@@ -60,5 +60,13 @@ public class PartDAO {
         return jdbcTemplate.query(SQL, new Object[]{Id}, new PartDTOMapper()).get(0);
     }
 
+    public void addCarToPart(Car car, int partId){
+
+
+
+
+
+    }
+
 
 }
