@@ -11,6 +11,7 @@ public class PartDTOMapper implements RowMapper<Part> {
     @Override
     public Part mapRow(ResultSet rs, int rowNum) throws SQLException {
         Part part = new Part();
+        part.setId(rs.getInt("Id"));
         part.setName(rs.getString("name"));
         part.setPartNumber(rs.getString("partnumber"));
         part.setDescription(rs.getString("description"));

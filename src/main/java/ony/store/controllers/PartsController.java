@@ -41,11 +41,6 @@ public class PartsController {
 
     @PostMapping("/create")
     public String createPart(@ModelAttribute("part") Part part){
-        System.out.println("Name "+ part.getName() +
-                            " PN "+ part.getPartNumber() +
-                            " Description " + part.getDescription() +
-                            " URL " + part.getImageURL() +
-                            " Price" + part.getPrice());
 
         return "redirect:/carforpart/" + partDAO.createPart(part);
     }

@@ -1,6 +1,7 @@
 package ony.store.dao;
 
 import ony.store.dto.Car;
+import ony.store.dto.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -37,13 +38,33 @@ private final JdbcTemplate jdbcTemplate;
         return jdbcTemplate.query(SQL, new CarDTOMapper());
     }
 
-        public List<Car> getAllOptions(Car optionSet){
+    public List<String> getBrandsOptions(){
 
+        String SQL= "select name from brands";
 
-        String SQL ="select brands.name, models.name, engines.name, bodies.name" +
-                    "from brands " +
-                    "join models on brands.id=models.brand_id";
-            return jdbcTemplate.query(SQL, new CarDTOMapper());
-        }
+        return jdbcTemplate.query(SQL, new CarBrandsMapper());
+
+    }
+    public List<String> getModelsOptions(){
+
+        String SQL= "select name from models";
+
+        return jdbcTemplate.query(SQL, new CarModelsMapper());
+
+    }
+    public List<String> getEnginesOptions(){
+
+        String SQL= "select name from engines";
+
+        return jdbcTemplate.query(SQL, new CarEnginesMapper());
+
+    }
+    public List<String> getBodiesOptions(){
+
+        String SQL= "select name from bodies";
+
+        return jdbcTemplate.query(SQL, new CarBodiesMapper());
+
+    }
 
 }

@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Choose car</title>
+
 </head>
+
 <body>
 <h1>Каталог запчастин</h1>
 <nobr th:text="${part.getName()}">VALUE</nobr>
@@ -14,14 +16,35 @@
 </br></br>
 <nobr th:text="${part.getPrice()}">VALUE</nobr>
 </br></br>
-    <img th:src="${part.getImageURL()}">
-</div>
+
+
+
+
+<form action="#" th:action="@{/carforpart/{id} (id=${part.getId})}" th:object="${car}"  method="get">
+    <select th:field="*{brand}" class="form-control" id="dropDownListBrands" onchange="this.form.submit()">
+        <option value="0">Марка</option>
+        <option th:each="option : ${brandOtions}" th:value="${option}" th:text="${option}"></option>
+    </select>
+
+    <select th:field="*{model}" class="form-control" id="dropDownListModels" onchange="this.form.submit()">
+        <option value="0">Модель</option>
+        <option th:each="option : ${modelOptions}" th:value="${option}" th:text="${option}"></option>
+    </select>
+
+    <select th:field="*{motorType}" class="form-control" id="dropDownListEngines" onchange="this.form.submit()">
+        <option value="0">Двигун</option>
+        <option th:each="option : ${enginesOptions}" th:value="${option}" th:text="${option}"></option>
+    </select>
+
+    <select th:field="*{bodyType}" class="form-control" id="dropDownListBodies" onchange="this.form.submit()">
+        <option value="0">Тип кузова</option>
+        <option th:each="option : ${bodiesOptions}" th:value="${option}" th:text="${option}"></option>
+    </select>
+
+
+</form>
+
+</br>
+<img th:src="${part.getImageURL()}">
 </body>
 </html>
-
-<form action="#" th:action="@{/select/model}" th:object="${car}"  method="get">
-    <select th:field="*{brand}" class="form-control" id="dropDownListBrands" onchange="this.form.submit()">
-        <option value="0">Марка машини</option>
-        <option th:each="option : ${options}" th:value="${option.getBrand()}" th:text="${option.getBrand()}"></option>
-    </select>
-</form>
