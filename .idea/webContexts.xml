@@ -3,6 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/carforpart/carforpart.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/carforpart" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/parts/parts.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/parts" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/select/body.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/select" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/select/select_model.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/select" />
