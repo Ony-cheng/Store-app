@@ -28,12 +28,14 @@ public class CarForPartController {
     @GetMapping("/{partId}")
     public String carForPart(@PathVariable Map <String, String> fromPath,
                              @ModelAttribute Car car, Model model){
-        Car carToAdd = new Car();
+
         int partId = Integer.parseInt(fromPath.get("partId"));
 
 
 
         model.addAttribute(partDAO.getSinglePart(partId));
+        model.addAttribute("cars",carDAO.getCarsForPart(partId));
+
         model.addAttribute("brandOtions",carDAO.getBrandsOptions());
         model.addAttribute("modelOptions",carDAO.getModelsOptions(car));
         model.addAttribute("enginesOptions",carDAO.getEnginesOptions(car));
@@ -44,8 +46,8 @@ public class CarForPartController {
 
     @PostMapping("/add/{partId}")
     public String addCarToPart(@ModelAttribute Car car, @PathVariable int partId){
+        partDAO.addCarToPart(car,partId);
 
-        System.out.println(car.getBrand());
         return "redirect:/carforpart/{partId}";
     }
 }

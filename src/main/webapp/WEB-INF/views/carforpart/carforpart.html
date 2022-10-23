@@ -17,28 +17,34 @@
 <nobr th:text="${part.getPrice()}">VALUE</nobr>
 </br></br>
 
-
+<div th:each="car : ${cars}">
+    <nobr th:text="${car.getBrand()}">VALUE</nobr>
+    <nobr th:text="${car.getModel()}">VALUE</nobr>
+    <nobr th:text="${car.getMotorType()}">VALUE</nobr>
+    <nobr th:text="${car.getBodyType()}">VALUE</nobr>
+    </br>
+</div>
 
 
 <form action="#" th:action="@{/carforpart/{id} (id=${part.getId})}" th:object="${car}"  method="get">
-    <select th:field="*{brand}" class="form-control" id="dropDownListBrands" onchange="this.form.submit()">
+    <select th:field="*{brandId}" class="form-control" id="dropDownListBrands" onchange="this.form.submit()">
         <option value="0">Марка</option>
-        <option th:each="option : ${brandOtions}" th:value="${option}" th:text="${option}"></option>
+        <option th:each="option : ${brandOtions}" th:value="${option.getBrandId()}" th:text="${option.getBrand()}"></option>
     </select>
 
-    <select th:field="*{model}" class="form-control" id="dropDownListModels" onchange="this.form.submit()">
+    <select th:field="*{modelId}" class="form-control" id="dropDownListModels" onchange="this.form.submit()">
         <option value="0">Модель</option>
-        <option th:each="option : ${modelOptions}" th:value="${option}" th:text="${option}"></option>
+        <option th:each="option : ${modelOptions}" th:value="${option.getModelId()}" th:text="${option.getModel()}"></option>
     </select>
 
-    <select th:field="*{motorType}" class="form-control" id="dropDownListEngines" onchange="this.form.submit()">
+    <select th:field="*{motorTypeId}" class="form-control" id="dropDownListEngines" onchange="this.form.submit()">
         <option value="0">Двигун</option>
-        <option th:each="option : ${enginesOptions}" th:value="${option}" th:text="${option}"></option>
+        <option th:each="option : ${enginesOptions}" th:value="${option.getMotorTypeId()}" th:text="${option.getMotorType()}"></option>
     </select>
 
-    <select th:field="*{bodyType}" class="form-control" id="dropDownListBodies" onchange="this.form.submit()">
+    <select th:field="*{bodyTypeId}" class="form-control" id="dropDownListBodies" onchange="this.form.submit()">
         <option value="0">Тип кузова</option>
-        <option th:each="option : ${bodiesOptions}" th:value="${option}" th:text="${option}"></option>
+        <option th:each="option : ${bodiesOptions}" th:value="${option.getBodyTypeId()}" th:text="${option.getBodyType()}"></option>
     </select>
 
     <input type="submit" th:formaction="@{/carforpart/add/{id} (id=${part.getId})}" formmethod="post" value="Додати авто">

@@ -2,6 +2,10 @@ package ony.store.dao;
 
 import ony.store.dto.Car;
 import ony.store.dto.Part;
+import ony.store.mappers.CarBrandsMapper;
+import ony.store.mappers.CarEnginesMapper;
+import ony.store.mappers.CarMapper;
+import ony.store.mappers.CarModelsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -38,33 +42,49 @@ private final JdbcTemplate jdbcTemplate;
         return jdbcTemplate.query(SQL, new CarDTOMapper());
     }
 
-    public List<String> getBrandsOptions(){
+    public List<Car> getBrandsOptions(){
 
-        String SQL= "select name from brands";
+        String SQL= "select name, id from brands";
 
         return jdbcTemplate.query(SQL, new CarBrandsMapper());
 
     }
-    public List<String> getModelsOptions(Car car){
+    public List<Car> getModelsOptions(Car car){
 
-        String SQL= "select name from models WHERE brand_id IN (SELECT ID FROM BRANDS WHERE NAME=?)";
 
-        return jdbcTemplate.query(SQL, new Object[]{car.getBrand()}, new CarModelsMapper());
+        String SQL= "select name, id from models WHERE brand_id =?";
 
-    }
-    public List<String> getEnginesOptions(Car car){
-
-        String SQL= "select name from engines WHERE model_id IN (SELECT ID FROM MODELS WHERE NAME =?)";
-
-        return jdbcTemplate.query(SQL, new Object[]{car.getModel()}, new CarEnginesMapper());
+        return jdbcTemplate.query(SQL, new Object[]{car.getBrandId()}, new CarModelsMapper());
 
     }
-    public List<String> getBodiesOptions(Car car){
+    public List<Car> getEnginesOptions(Car car){
 
-        String SQL= "select name from bodies";
+        String SQL= "select engines.name, engines.id from engines join models" +
+                " on models.id=engines.model_id WHERE (model_id=? and brand_id=?)";
+
+        return jdbcTemplate.query(SQL, new Object[]{car.getModelId(), car.getBrandId()},
+                new CarEnginesMapper());
+
+    }
+    public List<Car> getBodiesOptions(Car car){
+
+        String SQL= "select name, id from bodies";
 
         return jdbcTemplate.query(SQL, new CarBodiesMapper());
 
     }
 
+    public List<Car> getCarsForPart(int partId){
+
+        String SQL= "select cars.id cars_id, brands.name brands_name, models.name models_name," +
+                " engines.name engines_name, bodies.name bodies_name from brands" +
+                " join cars on brands.id = cars.brand_id" +
+                " join models on models.id=cars.model_id" +
+                " join engines on engines.id=cars.engine_id" +
+                " join bodies on bodies.id = cars.body_id" +
+                " join cars_to_parts on cars.id = cars_to_parts.car_id" +
+                " where cars_to_parts.part_id = ?";
+
+        return jdbcTemplate.query(SQL, new Object[]{partId}, new CarMapper());
+    }
 }

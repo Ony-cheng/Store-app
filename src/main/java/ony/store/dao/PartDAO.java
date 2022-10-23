@@ -3,6 +3,7 @@ package ony.store.dao;
 import ony.store.dto.Car;
 import ony.store.dto.CurrentQuery;
 import ony.store.dto.Part;
+import ony.store.mappers.CarTableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -62,8 +63,28 @@ public class PartDAO {
 
     public void addCarToPart(Car car, int partId){
 
+        String SQL;
+
+        SQL= "select id from cars where (brand_id=? AND model_id=? AND engine_id=? AND body_id=?)";
 
 
+        List<Car> anewCar = jdbcTemplate.query(SQL, new Object[]{car.getBrandId(), car.getModelId(),car.getMotorTypeId(),car.getBodyTypeId()},
+                new CarTableMapper());
+        if(anewCar.isEmpty()){
+            SQL = "insert into cars(brand_id, model_id, engine_id, body_id)" +
+                    "values(?,?,?,?)";
+            jdbcTemplate.update(SQL, car.getBrandId(), car.getModelId(),car.getMotorTypeId(),car.getBodyTypeId());
+        }
+
+        SQL= "select id from cars where (brand_id=? AND model_id=? AND engine_id=? AND body_id=?)";
+        int carId  = jdbcTemplate.query(SQL, new Object[]{car.getBrandId(), car.getModelId(),car.getMotorTypeId(),car.getBodyTypeId()},
+                new CarTableMapper()).get(0).getId();
+
+
+        SQL = "insert into cars_to_parts(car_id, part_id) values(?,?)";
+
+
+        jdbcTemplate.update(SQL, carId, partId);
 
 
     }
