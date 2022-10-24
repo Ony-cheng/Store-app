@@ -1,6 +1,7 @@
 package ony.store.controllers;
 
 import ony.store.dao.PartDAO;
+import ony.store.dto.Car;
 import ony.store.dto.CurrentQuery;
 import ony.store.dto.Part;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,11 @@ public class PartsController {
 
 
     @GetMapping
-    public String showParts(Model model){
-
+    public String showParts(@ModelAttribute Car car,
+            Model model){
+        model.addAttribute("car", car);
         model.addAttribute("currentQuery", currentQuery);
-        model.addAttribute("parts", partDAO.getParts(currentQuery));
+        model.addAttribute("parts", partDAO.getParts(car));
 
         return "parts/show";
     }

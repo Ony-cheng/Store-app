@@ -7,16 +7,28 @@
 <body>
 <h1>Каталог запчастин</h1>
 
-<nobr th:text="${currentQuery.getBrand()}">VALUE</nobr>
+<!--<nobr th:text="${currentQuery.getBrand()}">VALUE</nobr>-->
+<!--<a href = "/select">Обрати марку</a> </br></br>-->
+
+<!--<nobr th:text="${currentQuery.getModel()}">VALUE</nobr>-->
+<!--</br></br>-->
+
+<!--<nobr th:text="${currentQuery.getMotorType()}">VALUE</nobr>-->
+<!--</br></br>-->
+
+<!--<nobr th:text="${currentQuery.getBodyType()}">VALUE</nobr>-->
+<!--</br></br>-->
+
+<nobr th:text="${car.getBrand()}">VALUE</nobr>
 <a href = "/select">Обрати марку</a> </br></br>
 
-<nobr th:text="${currentQuery.getModel()}">VALUE</nobr>
+<nobr th:text="${car.getModel()}">VALUE</nobr>
 </br></br>
 
-<nobr th:text="${currentQuery.getMotorType()}">VALUE</nobr>
+<nobr th:text="${car.getMotorType()}">VALUE</nobr>
 </br></br>
 
-<nobr th:text="${currentQuery.getBodyType()}">VALUE</nobr>
+<nobr th:text="${car.getBodyType()}">VALUE</nobr>
 </br></br>
 
 <p>Мої вітаннячка! Бачу в тебе нехуйова тачка</p>

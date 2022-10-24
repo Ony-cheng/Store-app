@@ -1,11 +1,7 @@
 package ony.store.dao;
 
 import ony.store.dto.Car;
-import ony.store.dto.Part;
-import ony.store.mappers.CarBrandsMapper;
-import ony.store.mappers.CarEnginesMapper;
-import ony.store.mappers.CarMapper;
-import ony.store.mappers.CarModelsMapper;
+import ony.store.mappers.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -52,17 +48,22 @@ private final JdbcTemplate jdbcTemplate;
     public List<Car> getModelsOptions(Car car){
 
 
-        String SQL= "select name, id from models WHERE brand_id =?";
+        String SQL= "select models.name, models.id from models join brands on models.brand_id=brands.id" +
+                " WHERE (brands.name =? or brands.id=?)";
 
-        return jdbcTemplate.query(SQL, new Object[]{car.getBrandId()}, new CarModelsMapper());
+        return jdbcTemplate.query(SQL, new Object[]{car.getBrand(),car.getBrandId()},
+                new CarModelsMapper());
 
     }
     public List<Car> getEnginesOptions(Car car){
 
         String SQL= "select engines.name, engines.id from engines join models" +
-                " on models.id=engines.model_id WHERE (model_id=? and brand_id=?)";
+                " on models.id=engines.model_id" +
+                " join brands on brands.id=models.brand_id" +
+                " WHERE (models.name=? and brands.name=?) or (models.id=? and brands.id=?)";
 
-        return jdbcTemplate.query(SQL, new Object[]{car.getModelId(), car.getBrandId()},
+        return jdbcTemplate.query(SQL, new Object[]{car.getModel(), car.getBrand(),
+                car.getModelId(), car.getBrandId()},
                 new CarEnginesMapper());
 
     }

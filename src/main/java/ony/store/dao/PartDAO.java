@@ -4,6 +4,7 @@ import ony.store.dto.Car;
 import ony.store.dto.CurrentQuery;
 import ony.store.dto.Part;
 import ony.store.mappers.CarTableMapper;
+import ony.store.mappers.PartDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ public class PartDAO {
 
 
 
-    public List<Part> getParts(CurrentQuery currentQuery){ // Треба знищіти на**й цей каррентквері
+    public List<Part> getParts(Car currentQuery){ // Треба знищіти на**й цей каррентквері
 
 
         String   SQL="select *" +

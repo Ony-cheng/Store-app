@@ -3,14 +3,11 @@ package ony.store.controllers;
 import ony.store.dao.CarDAO;
 import ony.store.dao.PartDAO;
 import ony.store.dto.Car;
-import ony.store.dto.CurrentPart;
-import ony.store.dto.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Currency;
 import java.util.Map;
 
 @Controller

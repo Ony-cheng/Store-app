@@ -1,4 +1,4 @@
-package ony.store.dao;
+package ony.store.mappers;
 
 import ony.store.dto.Car;
 import org.springframework.jdbc.core.RowMapper;

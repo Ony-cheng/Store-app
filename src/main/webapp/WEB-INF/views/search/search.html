@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose car</title>
+
+</head>
+
+<body>
+<h1>Обери машину на яку шукаєш запчастини</h1>
+</br>
+
+<form action="#" th:action="@{/search}" th:object="${car}"  method="get">
+
+    <select th:field="*{brand}" class="form-control" id="dropDownListBrands" onchange="this.form.submit()">
+        <option value="0">Марка</option>
+        <option th:each="option : ${brandOtions}" th:value="${option.getBrand()}" th:text="${option.getBrand()}"></option>
+    </select>
+
+    <select th:field="*{model}" class="form-control" id="dropDownListModels" onchange="this.form.submit()">
+        <option value="0">Модель</option>
+        <option th:each="option : ${modelOptions}" th:value="${option.getModel()}" th:text="${option.getModel()}"></option>
+    </select>
+
+    <select th:field="*{motorType}" class="form-control" id="dropDownListEngines" onchange="this.form.submit()">
+        <option value="0">Двигун</option>
+        <option th:each="option : ${enginesOptions}" th:value="${option.getMotorType()}" th:text="${option.getMotorType()}"></option>
+    </select>
+
+    <select th:field="*{bodyType}" class="form-control" id="dropDownListBodies" onchange="this.form.submit()">
+        <option value="0">Тип кузова</option>
+        <option th:each="option : ${bodiesOptions}" th:value="${option.getBodyType()}" th:text="${option.getBodyType()}"></option>
+    </select>
+
+    <input type="submit" th:formaction="@{/parts}" formmethod="get" value="Знайти">
+</form>
+
+
+</body>
+</html>
