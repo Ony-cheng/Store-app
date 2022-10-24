@@ -2,11 +2,8 @@
 <body>
 <h2>Hello World!</h2>
 
-<a href = "/select">Go to your car model select"</a>
-</br>
-
 <a href = "/parts/new">Add parts"</a>
 </br>
-<a href = "/search">Add parts"</a>
+<a href = "/search">Go to search</a>
 </body>
 </html>
