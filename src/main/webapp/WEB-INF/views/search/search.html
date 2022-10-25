@@ -43,6 +43,7 @@
 </br>
 <p>Ось шо в нас є </p>
 
+<div class="grid-container">
 <div th:each="part : ${partscar}">
     <p th:text="${part.getName()}">VALUE</p>
     <p th:text="${part.getDescription()}">VALUE</p>
@@ -52,6 +53,7 @@
     <p th:text="${part.getName()}">VALUE</p>
     <p th:text="${part.getDescription()}">VALUE</p>
     <img th:src="${part.getImageURL()}">
+</div>
 </div>
 </body>
 </html>

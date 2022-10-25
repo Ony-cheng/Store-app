@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose car</title>
+    <style>
+        body {background-color: #708f91;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Керування базою запчастин та авто</h1>
+</br>
+
+    <form  th:action="@{/manage}"   method="get">
+
+        <input type="text" id="searchQuery" th:value="${searchQuery}" name="searchQuery"/>
+        <input type="submit" value="Пошук"/>
+    </form>
+
+</br>
+<p>Запчастини</p>
+
+    <div th:each="part : ${partsname}">
+        <a th:href="@{/manage/edit/{Id} (Id=${part.getId()})}">
+            <span th:text="${part.getName()}">VALUE</span>
+        </a>
+        <p th:text="${part.getDescription()}">VALUE</p>
+        <img th:src="${part.getImageURL()}">
+
+</div>
+</body>
+</html>

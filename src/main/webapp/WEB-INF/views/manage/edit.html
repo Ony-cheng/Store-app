@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose car</title>
+    <style>
+
+        body {background-color: #708f91;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+        }
+        label{
+            display: inline-block;
+            float: left;
+            clear: left;
+            width: 250px;
+            text-align: left;
+        }
+
+        input{
+            display: inline-block;
+            float: left;
+            width: 25%;
+            height: 25px;
+        }
+
+
+        img{
+            height: 250px;
+            width: 250px;
+        }
+        #right{
+            text-align: left;
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Картка запчастини</h1>
+
+<form th:method="POST" th:action="@{/manage/update}" th:object="${part}" style="display: inline;">
+
+    <label for="name">Назва: </label>
+    <input type="text" th:field="*{name}" th:value="${part.getName()}" id="name"/>
+    </br>
+    <label for="partnumber">Артикул: </label>
+    <input type="text" th:field="*{partNumber}" th:value="${part.getPartNumber()}" id="partnumber"/>
+    </br>
+    <label for="description">Опис: </label>
+    <input type="text" th:field="*{description}" th:value="${part.getDescription()}" id="description"/>
+    </br>
+    <label for="imageurl">Посилання на зображення: </label>
+    <input type="text" th:field="*{imageURL}" th:value="${part.getImageURL()}" id="imageurl"/>
+    </br>
+    <label for="price">Ціна: </label>
+    <input type="text" th:field="*{price}" th:value="${part.getPrice()}" id="price"/>
+    </br>
+    <br>
+    <input type="submit" value="Записати" />
+    </br>
+</form>
+</br>
+<div id ="right">
+<img th:src="${part.getImageURL()}">
+</div>
+</body>
+</html>
