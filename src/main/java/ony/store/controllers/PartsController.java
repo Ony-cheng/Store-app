@@ -22,15 +22,7 @@ public class PartsController {
               this.partDAO = partDAO;
     }
 
-    @GetMapping
-    public String showParts(@ModelAttribute Car car,
-            Model model){
-        model.addAttribute("car", car);
 
-        model.addAttribute("parts", partDAO.getParts(car));
-
-        return "parts/show";
-    }
     @GetMapping("/new")
     public String newPart(@ModelAttribute("part") Part part){
 

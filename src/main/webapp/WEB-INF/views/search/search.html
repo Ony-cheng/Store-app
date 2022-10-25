@@ -9,7 +9,7 @@
 <body>
 <h1>Обери машину на яку шукаєш запчастини</h1>
 </br>
-
+<div style="display: flex;">
 <form action="#" th:action="@{/search}" th:object="${car}"  method="get">
 
     <select th:field="*{brand}" class="form-control" id="dropDownListBrands" onchange="this.form.submit()">
@@ -31,10 +31,22 @@
         <option value="0">Тип кузова</option>
         <option th:each="option : ${bodiesOptions}" th:value="${option.getBodyType()}" th:text="${option.getBodyType()}"></option>
     </select>
-
-    <input type="submit" th:formaction="@{/parts}" formmethod="get" value="Знайти">
 </form>
 
+<nobr>     Aбо шукай за назвою</nobr>
+<form  th:action="@{/search}"   method="get">
 
+    <input type="text" id="searchQuery" th:value="${searchQuery}" name="searchQuery"/>
+    <input type="submit" value="Пошук"/>
+</form>
+</div>
+</br>
+<p>Ось шо в нас є </p>
+
+<div th:each="part : ${parts}">
+    <p th:text="${part.getName()}">VALUE</p>
+    <p th:text="${part.getDescription()}">VALUE</p>
+    <img th:src="${part.getImageURL()}">
+</div>
 </body>
 </html>

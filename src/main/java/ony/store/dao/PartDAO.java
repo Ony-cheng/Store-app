@@ -21,8 +21,14 @@ public class PartDAO {
 
 
 
-    public List<Part> getParts(Car currentQuery){ // Треба знищіти на**й цей каррентквері
+    public List<Part> getParts(Car currentQuery){
 
+        if(currentQuery.getBrand()== null ||
+                currentQuery.getModel()== null ||
+        currentQuery.getMotorType()== null ||
+        currentQuery.getBodyType() == null){
+            return null;
+        }
 
         String   SQL="select *" +
                 " from parts" +
