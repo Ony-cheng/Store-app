@@ -42,10 +42,18 @@ public class PartDAO {
                 " AND models.name= ? " +
                 " AND engines.name = ? " +
                 " AND bodies.name = ? )";
-        System.out.println("Brand is "+currentQuery.getBrand()+ " id is "+ currentQuery.getBrandId());
+
 
         return jdbcTemplate.query(SQL, new Object[]{currentQuery.getBrand(), currentQuery.getModel(),
         currentQuery.getMotorType(), currentQuery.getBodyType()}, new PartDTOMapper());
+    }
+
+    public List<Part> getPartsByName (String query){
+        if(query==null){
+            return null;
+        }
+        String SQL = "select * from parts where lower (name) like lower ( ? )";
+        return jdbcTemplate.query(SQL, new Object[]{"%" + query + "%"}, new PartDTOMapper());
     }
 
     public int createPart(Part part){

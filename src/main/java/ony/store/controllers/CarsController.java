@@ -33,9 +33,9 @@ public class CarsController {
 
         System.out.println("Query is " + searchQuery);
 
-//        model.addAttribute(partDAO.getPartsByName(searchQuery))
-        model.addAttribute("parts", partDAO.getParts(car));
 
+        model.addAttribute("partscar", partDAO.getParts(car));
+        model.addAttribute("partsname",partDAO.getPartsByName(searchQuery));
         return "search/search";
     }
 
