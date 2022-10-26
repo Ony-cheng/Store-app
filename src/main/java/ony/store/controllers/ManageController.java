@@ -29,15 +29,24 @@ public class ManageController {
 
     @GetMapping("/edit/{Id}")
     public String editPart(@PathVariable int Id, Model model){
-        System.out.println("We are in controller " + Id);
 
          model.addAttribute("part", partDAO.getSinglePart(Id));
         return "manage/edit";
 
     }
-    @PostMapping("/update")
-    public String updatePart(@ModelAttribute Part part){
+    @PostMapping("/update/{Id}")
+    public String updatePart(@PathVariable int Id,@ModelAttribute Part part){
+
         System.out.println("Part name is "+ part.getName());
-        return "redirect:/";
+
+        partDAO.updatePart(part, Id);
+
+        return "redirect:/manage/edit/{Id}";
     }
+    @DeleteMapping("/delete/{Id}")
+    public String deletePart(@PathVariable int Id){
+        partDAO.deletePart(Id);
+        return "redirect:/manage";
+    }
+
 }

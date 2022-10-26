@@ -103,5 +103,24 @@ public class PartDAO {
 
     }
 
+    public void updatePart(Part part, int partId){
+
+        String SQL = "update parts set name = ?," +
+                " partnumber = ?, " +
+                " description = ?," +
+                " image_url = ?," +
+                " price = ?" +
+                " where id=?";
+
+        jdbcTemplate.update(SQL, part.getName(), part.getPartNumber(),
+                part.getDescription(),part.getImageURL(), part.getPrice(), partId);
+    }
+    public void deletePart(int partId){
+        String SQL = "delete from cars_to_parts where part_id = ?";
+        jdbcTemplate.update(SQL, partId);
+
+        SQL = "delete from parts where id = ?";
+        jdbcTemplate.update(SQL, partId);
+    }
 
 }
