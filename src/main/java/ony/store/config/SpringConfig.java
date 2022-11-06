@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -42,9 +44,10 @@ public class SpringConfig implements WebMvcConfigurer {
         resolver.setCharacterEncoding("UTF-8"); // <- this was added
         resolver.setForceContentType(true); // <- this was added
         resolver.setContentType("text/html; charset=UTF-8");
-
         registry.viewResolver(resolver);
+
     }
+
         @Bean
         public SpringTemplateEngine templateEngine() {
             SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -52,6 +55,16 @@ public class SpringConfig implements WebMvcConfigurer {
             templateEngine.setEnableSpringELCompiler(true);
             return templateEngine;
         }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/static/**")
+                .addResourceLocations("/static/", "classpath:/static/").setCachePeriod(3600)
+                .resourceChain(true)
+                .addResolver(new PathResourceResolver());;
+
+    }
         @Bean
         public DataSource dataSource(){
             DriverManagerDataSource dataSource= new DriverManagerDataSource();

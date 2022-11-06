@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Choose car</title>
-
+<link rel="stylesheet" href="static/stylesheets/styles.css">
 </head>
 
 <body>
+<div id="topcover">
+
+Ceterum autem censeo
+
+</div>
+
+<div id = "main">
 <h1>Обери машину на яку шукаєш запчастини</h1>
 </br>
-<div style="display: flex;">
+
 <form action="#" th:action="@{/search}" th:object="${car}"  method="get">
 
     <select th:field="*{brand}" class="form-control" id="dropDownListBrands" onchange="this.form.submit()">
@@ -39,21 +46,39 @@
     <input type="text" id="searchQuery" th:value="${searchQuery}" name="searchQuery"/>
     <input type="submit" value="Пошук"/>
 </form>
-</div>
+
 </br>
 <p>Ось шо в нас є </p>
 
-<div class="grid-container">
-<div th:each="part : ${partscar}">
-    <p th:text="${part.getName()}">VALUE</p>
-    <p th:text="${part.getDescription()}">VALUE</p>
-    <img th:src="${part.getImageURL()}">
-</div>
-<div th:each="part : ${partsname}">
-    <p th:text="${part.getName()}">VALUE</p>
-    <p th:text="${part.getDescription()}">VALUE</p>
-    <img th:src="${part.getImageURL()}">
-</div>
+
+
+    <div class="block" th:each="part : ${partscar}">
+
+        <div class="text-container">
+             <p th:text="${part.getName()}">VALUE</p>
+             <p th:text="${part.getDescription()}">VALUE</p>
+        </div>
+
+        <div class="img-container">
+            <img th:src="${part.getImageURL()}">
+        </div>
+
+    </div>
+
+
+    <div class="block" th:each="part : ${partsname}">
+
+        <div class="text-container">
+            <p th:text="${part.getName()}">VALUE</p>
+            <p th:text="${part.getDescription()}">VALUE</p>
+        </div>
+
+        <div class="img-container">
+            <img th:src="${part.getImageURL()}">
+        </div>
+
+    </div>
+
 </div>
 </body>
 </html>
