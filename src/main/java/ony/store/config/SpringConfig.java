@@ -1,6 +1,9 @@
 package ony.store.config;
 
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -47,5 +50,13 @@ public class SpringConfig implements WebMvcConfigurer {
             templateEngine.setTemplateResolver(templateResolver());
             templateEngine.setEnableSpringELCompiler(true);
             return templateEngine;
+        }
+
+        @Bean
+        public EntityManager managerFactory(){
+
+        EntityManagerFactory entityManagerFactory =Persistence.createEntityManagerFactory("org.hibernate.ony");
+
+        return entityManagerFactory.createEntityManager();
         }
 }
